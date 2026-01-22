@@ -218,3 +218,196 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveNavLink();
 });
 
+    // Animate skill progress bars
+    function animateSkillBars() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target;
+                    const progressValue = progressBar.getAttribute('data-progress');
+                    
+                    // Animate progress bar
+                    setTimeout(() => {
+                        progressBar.style.width = `${progressValue}%`;
+                    }, 300);
+                    
+                    observer.unobserve(progressBar);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        progressBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    }
+    
+    // Initialize skill bars animation
+    animateSkillBars();
+    
+    // Add hover effect to kelas cards with tilt
+    const kelasCards = document.querySelectorAll('.kelas-card');
+    
+    kelasCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const cardRect = this.getBoundingClientRect();
+            const cardCenterX = cardRect.left + cardRect.width / 2;
+            const cardCenterY = cardRect.top + cardRect.height / 2;
+            
+            const mouseX = e.clientX - cardCenterX;
+            const mouseY = e.clientY - cardCenterY;
+            
+            const rotateY = mouseX / 20;
+            const rotateX = -mouseY / 20;
+            
+            this.style.transform = `translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(-10px) rotateX(0deg) rotateY(0deg)';
+        });
+    });
+    
+    // Animate kontak items on scroll
+    const kontakItems = document.querySelectorAll('.kontak-item');
+    
+    const kontakObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, index * 100);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    kontakItems.forEach(item => {
+        kontakObserver.observe(item);
+    });
+    
+    // Add CSS for kontak animation
+    const kontakAnimationStyle = document.createElement('style');
+    kontakAnimationStyle.textContent = `
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .kontak-item.animate-in {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+        
+        .kontak-item {
+            opacity: 0;
+        }
+    `;
+    document.head.appendChild(kontakAnimationStyle);
+    
+    // Add click handler for daftar button
+    const daftarButton = document.querySelector('.daftar-button');
+    if (daftarButton) {
+        daftarButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: var(--border-radius);
+                z-index: 9999;
+                box-shadow: var(--shadow-glow);
+                animation: slideInRight 0.3s ease-out;
+            `;
+            
+            const notificationStyle = document.createElement('style');
+            notificationStyle.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(notificationStyle);
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Pendaftaran belum bisa dilakukan! Hubungi kami lewat kontak dibawah.</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease-out reverse forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        });
+    }
+    
+    // Add parallax effect to daftar section
+    const daftarSection = document.querySelector('.daftar');
+    if (daftarSection) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            daftarSection.style.backgroundPosition = `center ${rate}px`;
+        });
+    }
+    
+    // Update navigation for new sections
+    const navLinksContainer = document.querySelector('.nav-menu ul');
+    
+    // Add new sections to navigation if needed
+    const sections = ['home', 'produk', 'tentang', 'kelas', 'skill', 'daftar'];
+    
+    // Add smooth scrolling for new sections
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
