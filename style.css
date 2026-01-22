@@ -74,11 +74,6 @@ h1, h2, h3, h4, .cta-button, .nav-link, .logo, .section-title {
     line-height: 1.2;
 }
 
-h1 {
-    font-size: 2.5rem;
-    letter-spacing: -0.5px;
-}
-
 h2 {
     font-size: 2.2rem;
     margin-bottom: 1rem;
@@ -712,3 +707,524 @@ p, .produk-deskripsi, .section-subtitle, .hero-subtitle, .footer-note {
     }
 }
 
+/* Section Kelas Online */
+.kelas {
+    padding: 100px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.kelas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.kelas-card {
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    transition: var(--transition);
+    border: 1px solid rgba(138, 43, 226, 0.1);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.kelas-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(138, 43, 226, 0.3);
+}
+
+.kelas-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), transparent);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.kelas-card:hover::before {
+    opacity: 1;
+}
+
+.kelas-visual {
+    position: relative;
+    height: 120px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kelas-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
+}
+
+.kelas-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-text);
+}
+
+.kelas-glow {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(20px);
+    transition: var(--transition);
+}
+
+.kelas-card:hover .kelas-glow {
+    opacity: 0.3;
+    animation: pulse-glow 2s infinite alternate;
+}
+
+.kelas-level {
+    display: inline-block;
+    background-color: rgba(138, 43, 226, 0.2);
+    color: var(--color-accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.kelas-nama {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.kelas-deskripsi {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+}
+
+.kelas-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.meta-item {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.kelas-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    text-align: center;
+}
+
+.kelas-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+/* Section Skill */
+.skill {
+    padding: 100px 0;
+    background-color: var(--color-background);
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.skill-item {
+    text-align: center;
+    position: relative;
+}
+
+.skill-orb {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 2rem;
+}
+
+.orb-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: rotate 20s linear infinite;
+}
+
+.orb-ring-1 {
+    width: 100%;
+    height: 100%;
+    border-color: var(--color-secondary);
+    opacity: 0.3;
+}
+
+.orb-ring-2 {
+    width: 75%;
+    height: 75%;
+    border-color: var(--color-accent);
+    opacity: 0.5;
+    animation-direction: reverse;
+    animation-duration: 15s;
+}
+
+.orb-ring-3 {
+    width: 50%;
+    height: 50%;
+    border-color: var(--color-secondary-light);
+    opacity: 0.7;
+    animation-duration: 10s;
+}
+
+.orb-core {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.orb-core svg {
+    width: 32px;
+    height: 32px;
+    color: var(--color-text);
+}
+
+.orb-glow {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    filter: blur(20px);
+    animation: pulse-glow 3s infinite alternate;
+}
+
+.skill-nama {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-text);
+}
+
+.skill-deskripsi {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    min-height: 40px;
+}
+
+.skill-progress {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.5s ease-out;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Section Daftar */
+.daftar {
+    padding: 100px 0;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(10, 10, 10, 0.9));
+    position: relative;
+    overflow: hidden;
+}
+
+.daftar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(187, 134, 252, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.daftar-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.daftar-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--color-text), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.daftar-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: var(--color-text-secondary);
+}
+
+.kontak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.kontak-item {
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: var(--transition);
+    border: 1px solid rgba(138, 43, 226, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.kontak-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(138, 43, 226, 0.3);
+}
+
+.kontak-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.kontak-item:hover::before {
+    transform: scaleX(1);
+}
+
+.kontak-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.kontak-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.kontak-item:hover .kontak-icon::before {
+    transform: translateX(100%);
+}
+
+.kontak-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-text);
+}
+
+.kontak-label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.kontak-handle {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.daftar-cta {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+.daftar-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.daftar-button {
+    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+}
+
+/* Tooltip untuk kontak */
+.kontak-item {
+    position: relative;
+}
+
+.kontak-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-card-bg);
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    z-index: 10;
+}
+
+.kontak-item:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 10px);
+}
+
+/* Responsive Design untuk section baru */
+@media (max-width: 768px) {
+    .daftar-title {
+        font-size: 2.2rem;
+    }
+    
+    .kontak-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skill-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .skill-orb {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .orb-core {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .orb-core svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .kontak-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .kelas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .daftar-title {
+        font-size: 1.8rem;
+    }
+    
+    .daftar-subtitle {
+        font-size: 1rem;
+    }
+}
